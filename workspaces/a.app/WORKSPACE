@@ -1,0 +1,3 @@
+workspace(name = "a_app")
+load("@a_app//:workspace.bzl", "a_app")
+a_app()

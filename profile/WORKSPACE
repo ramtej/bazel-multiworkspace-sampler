@@ -1,0 +1,16 @@
+
+# A.app
+local_repository(
+    name = "a_app",
+    path = "../workspaces/a.app",
+)
+load("@a_app//:workspace.bzl", "a_app")
+a_app()
+
+# B.app
+local_repository(
+    name = "b_app",
+    path = "../workspaces/b.app",
+)
+load("@b_app//:workspace.bzl", "b_app")
+b_app()

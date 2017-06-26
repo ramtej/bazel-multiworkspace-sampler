@@ -1,0 +1,26 @@
+options:
+  languages: [ "java"]
+  resolvers:
+    - id: "mavencentral"
+      type: "default"
+      url: https://repo.maven.apache.org/maven2/
+  transitivity: runtime_deps
+  versionConflictPolicy: highest
+
+dependencies:
+
+  org.apache.maven:
+    maven-aether-provider:
+      lang: java
+      version: "3.1.0"
+
+  org.eclipse.aether:
+    aether:
+      lang: java
+      modules: [ "api", "connector-basic", "impl", "transport-file", "transport-http" ]
+      version: "1.0.2.v20150114"
+
+  junit:
+    junit:
+      lang: java
+      version: "4.12"
