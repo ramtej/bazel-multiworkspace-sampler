@@ -1,8 +1,10 @@
 def declare_maven(item):
   sha = item.get("sha1")
-  if sha != None:
-     # Note JJ : --> Here the "Cannot redefine repository after any load statement in the WORKSPACE file" error message
-     native.maven_jar(name = item["name"], artifact = item["artifact"], sha1 = sha)
+  if native.existing_rule(item["name"]) == None: # verify if maven_jar is already defined to avoid repository redefinitions with the same maven_jar name
+    if sha != None:
+      native.maven_jar(name = item["name"], artifact = item["artifact"], sha1 = sha)
+    else:
+      native.maven_jar(name = item["name"], artifact = item["artifact"])
+    native.bind(name = item["bind"], actual = item["actual"])
   else:
-    native.maven_jar(name = item["name"], artifact = item["artifact"])
-  native.bind(name = item["bind"], actual = item["actual"])
+    print ("TODO JJ : Skipped rule name " + item["name"] + " for maven artifact " + item["artifact"])
